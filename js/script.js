@@ -25,8 +25,8 @@ window.onload = function(){
 	let opening_count = 0;
 	
 	let cameraVertAngle = 0.0;
-	const cameraVertAngleMax = 0.0 * Math.PI / 180.0;
-	const cameraVertAngleMin = -75.0 * Math.PI / 180.0;
+	const cameraVertAngleMax = 12.0 * Math.PI / 180.0;
+	const cameraVertAngleMin = -78.0 * Math.PI / 180.0;
 	
 	let cameraOriginZSpeed;
 	let cameraOriginZDest;
@@ -1090,9 +1090,10 @@ window.onload = function(){
 			prevMouseLocation = getMouseLocation(e);
 			currentMouseLocation = prevMouseLocation;
 			if (prevMouseLocation.x > c.width * 0.9 && prevMouseLocation.y > c.height * 0.9) {
-				drawMode += 1;
-				drawMode %= numDrawMode;
-				drawUpdate();
+				//toggleCameraAction();
+				//drawMode += 1;
+				//drawMode %= numDrawMode;
+				//drawUpdate();
 			}
 		}
 	}
@@ -1128,9 +1129,10 @@ window.onload = function(){
 			currentTouchLocations = prevTouchLocations;
 			if (prevTouchLocations.length === 1) {
 				if (prevTouchLocations[0].x > c.width * 0.9 && prevTouchLocations[0].y > c.height * 0.9) {
-					drawMode += 1;
-					drawMode %= numDrawMode;
-					drawUpdate();
+					//toggleCameraAction();
+					//drawMode += 1;
+					//drawMode %= numDrawMode;
+					//drawUpdate();
 				}
 			}
 			e.preventDefault();
@@ -1182,6 +1184,14 @@ window.onload = function(){
 			touchLocations.push(touchLocation);
 		}
 		return touchLocations;
+	}
+	
+	function toggleCameraAction() {
+		if (objects['camera_origin'].objectAction.play === 0) {
+			objects['camera_origin'].objectAction.play = 1;
+		} else {
+			objects['camera_origin'].objectAction.play = 0;
+		}
 	}
 
 };
