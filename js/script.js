@@ -93,6 +93,7 @@ window.onload = function(){
 					 'camera_origin',
 					 'camera',
 					 
+					 'geo',
 					 '1P',
 					 '2P',
 					 '3P',
@@ -150,9 +151,9 @@ window.onload = function(){
 	
 	const objectActions = [
 						   
-						   {object: 'camera_origin',
-						   objectAction: {name: 'camera_origin_action', speed: 0.01}
-						   }
+						   //{object: 'camera_origin',
+						   //objectAction: {name: 'camera_origin_action', speed: 0.01}
+						   //}
 							
 						   ];
 	
