@@ -16,7 +16,7 @@ window.onload = function(){
 	let mousePressed = false;
 	let prevMouseLocation;
 	let currentMouseLocation;
-	let wheelDelta;
+	let wheelDelta = 0.00005;
 	
 	let touched = false;
 	let prevTouchLocations;
@@ -27,6 +27,8 @@ window.onload = function(){
 	let cameraVertAngle = 0.0;
 	const cameraVertAngleMax = 12.0 * Math.PI / 180.0;
 	const cameraVertAngleMin = -78.0 * Math.PI / 180.0;
+	const cameraViewAngleMax = 1.2;
+	const cameraViewAngleMin = 0.1;
 	
 	let cameraOriginZSpeed;
 	let cameraOriginZDest;
@@ -35,7 +37,10 @@ window.onload = function(){
 	let browser;
 	if (navigator.userAgent.indexOf('Chrome') != -1) {
 		browser = 'Chrome';
-	} else if (navigator.userAgent.indexOf('Safari')) {
+	} else if (navigator.userAgent.indexOf('Firefox') != -1) {
+		browser = 'Firefox';
+		wheelDelta = 0.005;
+	} else if (navigator.userAgent.indexOf('Safari') != -1) {
 		browser = 'Safari';
 	}
 	console.log(browser);
@@ -346,7 +351,7 @@ window.onload = function(){
 				
 				let ay = objects[obCamera[camMode]].angle_y;
 				ay -= 0.001 * (currentDist - prevDist);
-				if (ay < 1.2 && ay > 0.3) {
+				if (ay < cameraViewAngleMax && ay > cameraViewAngleMin) {
 					objects[obCamera[camMode]].angle_y = ay;
 				}
 				prevTouchLocations = currentTouchLocations;
@@ -1115,9 +1120,8 @@ window.onload = function(){
 		if (opening_count >= OPENING_LENGTH) {
 			//wheelDelta = e.deltaY;
 			let ay = objects[obCamera[camMode]].angle_y;
-			ay += 0.00005 * e.deltaY;
-			//if (ay < 1.2 && ay > 0.3) {
-			if (ay < 1.2 && ay > 0.1) {
+			ay += wheelDelta * e.deltaY;
+			if (ay < cameraViewAngleMax && ay > cameraViewAngleMin) {
 				objects[obCamera[camMode]].angle_y = ay;
 			}
 			//eText.textContent = ay;
