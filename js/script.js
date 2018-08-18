@@ -102,6 +102,7 @@ window.onload = function(){
 					 '6P',
 					 'PC_girder',
 					 'steel_girder',
+					 'rail',
 					 'cable'
 					 ];
 	
@@ -1115,7 +1116,8 @@ window.onload = function(){
 			//wheelDelta = e.deltaY;
 			let ay = objects[obCamera[camMode]].angle_y;
 			ay += 0.00005 * e.deltaY;
-			if (ay < 1.2 && ay > 0.3) {
+			//if (ay < 1.2 && ay > 0.3) {
+			if (ay < 1.2 && ay > 0.1) {
 				objects[obCamera[camMode]].angle_y = ay;
 			}
 			//eText.textContent = ay;
